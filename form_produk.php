@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Belajar OOP - Form Produk</title>
+    <title>Form Belanja Warung A</title>
 </head>
 <body>
-    <h2>Input Data Produk</h2>
+    <h2>Form Belanja Warung A</h2>
+
     <form method="POST" action="proses_produk.php">
-        Nama Produk:
-        <input type="text" name="nama"><br><br>
-        Harga:
+
+        Nama Pembeli:<br>
+        <input type="text"  name="nama"><br><br>
+
+        Nama Barang:<br>
+        <input type="text" name="barang"><br><br>
+
+        Harga:<br>
         <input type="number" name="harga"><br><br>
-        Jumlah:
+
+        Jumlah:<br>
         <input type="number" name="jumlah"><br><br>
-        Diskon (%):
-        <input type="number" name="diskon"><br><br>
-        <button type="submit">Proses</button>
+
+        <input type="submit">Proses Belanja</button>
+
     </form>
+
 </body>
 </html>

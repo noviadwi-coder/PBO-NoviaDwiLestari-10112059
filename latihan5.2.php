@@ -1,0 +1,162 @@
+<?php
+
+function formatRupiah($angka) {
+return "Rp" . number_format($angka, 0, ',','.');
+}
+
+class BelanjaWarung {
+Public $namaPembeli;
+Public $namaBarang;
+Public $hargaBarang;
+Public $jumlahBeli;
+
+
+Public function hitungSubtotal() {
+return $this->hargaBarang * $this->jumlahBeli;
+}
+
+Public function hitungDiskon($subtotal) {
+if ($subtotal > 100000) {
+return $subtotal * 0.1;
+}
+return 0;
+}
+
+Public function hitungTotal() {
+$subtotal = $this->hitungSubtotal();
+$diskon = $this->hitungDiskon($subtotal);
+}
+}
+
+
+
+$dataBelanja = [
+
+[
+"nama" => "Novia",
+"barang" => "Gula 1 Kg",
+"harga" => 6500,
+"jumlah" => 2
+],
+
+[
+"nama" => "Dwi",
+"barang" => "Minyak 1 L",
+"harga" => "140000",
+"jumlah" => 1
+]
+
+];
+
+echo "
+
+TRANSAKSI 1
+";
+
+
+$errors1 =[];
+
+$nama = $dataBelanja[0]["nama"];
+$barang = $dataBelanja[0]["barang"];
+$harga = $dataBelanja[0]["harga"];
+$jumlah = $dataBelanja[0]["jumlah"];
+
+if (empty($nama)) {
+$errors1[] = "Nama pembeli tidak boleh kosong.";
+}
+
+if ($harga <= 0) {
+$errors1[] = "Harga harus lebih dari 0.";
+}
+
+if ($jumlah <= 0) {
+$errors1[] = "Jumlah beli harus lebih dari 0.";
+}
+
+if (!empty($errors1)) {
+
+foreach ($errors1 as $error) {
+echo $error . "
+";
+}
+
+} else {
+
+$belanja1 = new BelanjaWarung();
+$belanja1->namaPembeli = $nama;
+$belanja1->namaBarang = $barang;
+$belanja1->hargaBarang = $harga;
+$belanja1->jumlahBeli = $jumlah;
+
+$subtotal = $belanja1->hitungSubtotal();
+$diskon = $belanja1->hitungDiskon($subtotal);
+$total = $belanja1->hitungTotal();
+
+echo "Pembeli : " . $belanja1->namaPembeli . "
+";
+echo "Barang : " . $belanja1->namaBarang . "
+";
+echo "Subtotal : " . formatRupiah($subtotal) . "
+";
+echo "Diskon : " . formatRupiah($diskon) . "
+";
+echo "Total Bayar: " . formatRupiah($total) . "
+
+";
+}
+
+echo "
+TRANSAKSI 2
+";
+
+$errors2 = [];
+
+$nama = $dataBelanja[1]["nama"];
+$barang = $dataBelanja[1]["barang"];
+$harga = $dataBelanja[1]["harga"];
+$jumlah = $dataBelanja[1]["jumlah"];
+
+if (empty($nama)) {
+$errors2[] = "Nama pembeli tidak boleh kosong.";
+}
+
+if ($harga <= 0) {
+$errors2[] = "Harga harus lebih dari 0.";
+}
+
+if ($jumlah <= 0) {
+$errors2[] = "Jumlah beli harus lebih dari 0.";
+}
+
+if (!empty($errors2)) {
+
+foreach ($errors2 as $error) {
+echo $error . "
+";
+}
+
+} else {
+
+$belanja2 = new BelanjaWarung();
+$belanja2->namaPembeli = $nama;
+$belanja2->namaBarang = $barang;
+$belanja2->hargaBarang = $harga;
+$belanja2->jumlahBeli = $jumlah;
+
+$subtotal = $belanja2->hitungSubtotal();
+$diskon = $belanja2->hitungDiskon(subtotal: $subtotal);
+$total = $belanja2->hitungTotal();
+
+echo "Pembeli : " . $belanja2->namaPembeli . "
+";
+echo "Barang : " . $belanja2->namaBarang . "
+";
+echo "Subtotal : " . formatRupiah(angka: $subtotal) . "
+";
+echo "Diskon : " . formatRupiah(angka: $diskon) . "
+";
+echo "Total Bayar : " . formatRupiah(angka: $total) . "
+
+";
+}
+?>
